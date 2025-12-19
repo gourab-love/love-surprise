@@ -2,43 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>For My Love ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <section id="welcome" class="section active">
-        <div style="text-align: center;">
-            <h1 style="font-size: 4rem; color: var(--pink);">Hey Gorgeous... ❤️</h1>
-            <button onclick="next('tree-sec')" style="padding: 15px 40px; border-radius: 30px; border: none; background: var(--pink); color: white; cursor: pointer;">Open My Heart</button>
+        <div class="center-content">
+            <h1 class="glow-text">Hey Beautiful ❤️</h1>
+            <button class="btn main-btn" onclick="next('tree-sec')">Open My Heart</button>
         </div>
     </section>
 
     <section id="tree-sec" class="section">
-        <div class="container">
-            <div class="text-area">
+        <div class="split-container">
+            <div class="text-side">
                 <h1 id="headline"></h1>
-                <p id="sub-quote" style="font-size: 1.5rem; color: #666;"></p>
-                <button id="card-btn" onclick="next('card-sec')" style="display:none; margin-top: 30px; padding: 10px 25px; border-radius: 20px; border: 1px solid var(--pink); background: none; color: var(--pink); cursor: pointer;">See My Memories ↓</button>
+                <p id="sub-quote"></p>
+                <button id="to-cards" class="btn hidden" onclick="next('card-sec')">Next: Reasons Why ↓</button>
             </div>
-            <div class="tree-area" id="tree-container">
+            <div class="tree-side" id="tree-container">
                 <img src="tree.png" id="realistic-tree" alt="Our Love Tree">
             </div>
         </div>
     </section>
 
-    <section id="card-sec" class="section" style="flex-direction: column;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--dark-pink);">10 Reasons Why I Love You</h2>
-        <div class="cards-container" id="cards-grid"></div>
-        <button onclick="next('final-sec')" style="margin-top: 50px; padding: 15px 30px; border-radius: 30px; background: var(--dark-pink); color: white; border: none; cursor: pointer;">Last Surprise...</button>
+    <section id="card-sec" class="section col">
+        <h2 class="section-title">10 Reasons Why I Love You</h2>
+        <div class="cards-grid" id="cards-grid"></div>
+        <button class="btn" onclick="next('meter-sec')">Measure My Love ↓</button>
+    </section>
+
+    <section id="meter-sec" class="section col">
+        <h2>How much do I love you?</h2>
+        <div class="meter-container"><div id="meter-fill"></div></div>
+        <input type="range" id="love-slider" min="0" max="100" value="0">
+        <p id="meter-status">Slide to 100% to see the truth...</p>
+        <button class="btn hidden" id="meter-next" onclick="next('jar-sec')">Next: Jar of Hearts ↓</button>
+    </section>
+
+    <section id="jar-sec" class="section col">
+        <h2>Tap the Jar to release my Love</h2>
+        <div class="jar-wrapper" onclick="releaseHearts()">
+            <img src="https://cdn-icons-png.flaticon.com/512/3699/3699478.png" class="jar-img">
+        </div>
+        <button class="btn" onclick="next('map-sec')">Our Journey ↓</button>
+    </section>
+
+    <section id="map-sec" class="section col">
+        <h2>Distance Doesn't Matter</h2>
+        <div class="map-box">
+            <div class="point p1"></div>
+            <div class="point p2"></div>
+            <div id="map-line" class="line-path"></div>
+        </div>
+        <button class="btn" onclick="connectMap()">Connect Our Hearts</button>
+        <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">A Secret Message ↓</button>
+    </section>
+
+    <section id="scratch-sec" class="section col">
+        <h2>Scratch to Reveal my Secret</h2>
+        <div class="scratch-container">
+            <div class="scratch-content">You are my Greatest Adventure! ❤️</div>
+            <canvas id="scratch-canvas" width="300" height="150"></canvas>
+        </div>
+        <button class="btn" onclick="next('final-sec')">One Last Thing... ↓</button>
     </section>
 
     <section id="final-sec" class="section">
-        <div style="text-align: center; background: white; padding: 60px; border-radius: 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.1);">
-            <div id="envelope" style="font-size: 5rem; cursor: pointer;">✉️</div>
-            <div id="proposal" style="display: none;">
-                <h2 style="font-size: 3rem;">Will you be mine forever?</h2>
-                <button onclick="alert('I love you too! ❤️')" style="background: var(--pink); color: white; padding: 15px 40px; border: none; border-radius: 30px; cursor: pointer;">YES!</button>
+        <div class="final-card">
+            <div id="envelope" onclick="openFinal()">✉️</div>
+            <div id="proposal" class="hidden">
+                <h2>Will you be mine forever?</h2>
+                <div class="btn-group">
+                    <button class="btn yes" onclick="celebrate()">YES!</button>
+                    <button class="btn no" id="no-btn" onmouseover="moveNo()">No</button>
+                </div>
             </div>
         </div>
     </section>
