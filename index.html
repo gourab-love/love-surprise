@@ -4,85 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Queen ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root { --pink: #ff4d6d; --bg: #fff0f3; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); overflow-x: hidden; }
+        
+        /* Layout Fixes */
+        .section { min-height: 100vh; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; }
+        .active { display: flex; }
+        .hidden { display: none; }
+        .btn { padding: 15px 35px; border-radius: 50px; border: none; background: var(--pink); color: white; cursor: pointer; font-size: 1.1rem; font-weight: 600; margin-top: 20px; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); }
+
+        /* Jar Section Fix */
+        .jar-container { font-size: 100px; cursor: pointer; transition: transform 0.2s; position: relative; }
+        .jar-container:active { transform: scale(0.9); }
+
+        /* Map Animation Fix */
+        .map-box { position: relative; width: 300px; height: 100px; background: white; border-radius: 50px; display: flex; align-items: center; justify-content: space-around; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .line-draw { position: absolute; height: 4px; background: var(--pink); left: 50px; width: 0; transition: width 2s ease-in-out; }
+        
+        /* Final Section Fix (No Overlap) */
+        .proposal-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 80%; max-width: 400px; }
+        .btn-wrap { position: relative; height: 150px; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 20px; }
+        #no-btn { position: absolute; transition: 0.3s; z-index: 10; }
+    </style>
 </head>
 <body>
 
-    <section id="welcome" class="section active">
-        <h1 class="mega-text">Hey Beautiful ❤️</h1>
-        <button class="btn big" onclick="next('tree-sec')">Open My Heart</button>
+    <section id="s1" class="section active">
+        <h1>Hey Beautiful ❤️</h1>
+        <button class="btn" onclick="go(2)">Open My Heart</button>
     </section>
 
-    <section id="tree-sec" class="section">
-        <div class="tree-layout">
-            <div class="tree-text-box">
-                <h1 id="headline" class="mega-text"></h1>
-                <p id="sub-quote" class="romantic-p"></p>
-                <button id="to-cards" class="btn hidden" onclick="next('card-sec')">Reasons Why ↓</button>
-            </div>
-            <div class="tree-visual" id="tree-container">
-                <img src="tree.png" id="main-tree">
-            </div>
+    <section id="s2" class="section">
+        <h2>Tap the Jar to release Love</h2>
+        <div class="jar-container" onclick="popHearts()">🍯</div>
+        <button class="btn" onclick="go(3)">Our Journey ↓</button>
+    </section>
+
+    <section id="s3" class="section">
+        <h2>Distance Doesn't Matter</h2>
+        <div class="map-box">
+            <div style="z-index:2">📍 You</div>
+            <div id="line" class="line-draw"></div>
+            <div style="z-index:2">Me 📍</div>
         </div>
+        <button class="btn" onclick="startMap()">Connect Hearts</button>
+        <button id="map-next" class="btn hidden" onclick="go(4)">Final Surprise ↓</button>
     </section>
 
-    <section id="card-sec" class="section">
-        <h2 class="mega-text">10 Reasons Why I Love You</h2>
-        <div class="cards-grid" id="cards-grid"></div>
-        <button class="btn" onclick="next('meter-sec')">Measure My Love ↓</button>
-    </section>
-
-    <section id="meter-sec" class="section">
-        <h2 class="mega-text">How much do I love you?</h2>
-        <div class="meter-bg"><div id="meter-fill"></div></div>
-        <input type="range" id="love-slider" min="0" max="100" value="0">
-        <p id="meter-status">Slide to 100% ❤️</p>
-        <button class="btn hidden" id="meter-next" onclick="next('jar-sec')">Next: Jar ↓</button>
-    </section>
-
-    <section id="jar-sec" class="section">
-        <h2 class="mega-text">Tap the Jar</h2>
-        <div class="jar-box" onclick="releaseHearts()">
-            <img src="https://cdn-icons-png.flaticon.com/512/3699/3699478.png" class="jar-img" id="love-jar">
-        </div>
-        <button class="btn" onclick="next('map-sec')">Our Journey ↓</button>
-    </section>
-
-    <section id="map-sec" class="section">
-        <h2 class="mega-text">Distance Doesn't Matter</h2>
-        <div class="map-track">
-            <div class="dot d1"><span>You</span></div>
-            <div class="dot d2"><span>Me</span></div>
-            <svg class="map-svg">
-                <line id="map-line" x1="20%" y1="50%" x2="20%" y2="50%" stroke="#ff4d6d" stroke-width="4" stroke-linecap="round" />
-            </svg>
-        </div>
-        <button class="btn" onclick="connectMap()">Connect Hearts</button>
-        <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">Secret ↓</button>
-    </section>
-
-    <section id="scratch-sec" class="section">
-        <h2 class="mega-text">Scratch the Secret</h2>
-        <div class="scratch-card-box">
-            <div class="scratch-text">You are my Greatest Adventure! ❤️</div>
-            <canvas id="scratch-canvas" width="350" height="180"></canvas>
-        </div>
-        <button class="btn" onclick="next('final-sec')">Final Surprise ↓</button>
-    </section>
-
-    <section id="final-sec" class="section">
-        <div class="final-card-container">
-            <div id="envelope" onclick="openFinal()">✉️</div>
-            <div id="proposal" class="hidden">
-                <h2 class="mega-text">Will you be mine forever?</h2>
-                <div class="final-buttons-fixed">
-                    <button class="btn yes" onclick="celebrate()">YES!</button>
-                    <button class="btn no" id="no-btn" onmouseover="moveNo()">No</button>
-                </div>
+    <section id="s4" class="section">
+        <div class="proposal-box">
+            <h2>Will you be mine forever?</h2>
+            <div class="btn-wrap">
+                <button class="btn" onclick="alert('Yay! I Love You! ❤️')">YES!</button>
+                <button class="btn" id="no-btn" onmouseover="moveNo()" style="background:#666">No</button>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        function go(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById('s' + id).classList.add('active');
+        }
+
+        function popHearts() {
+            for(let i=0; i<10; i++) {
+                const h = document.createElement('div');
+                h.innerHTML = "❤️";
+                h.style.position = "fixed";
+                h.style.left = Math.random() * 100 + "vw";
+                h.style.bottom = "0";
+                h.style.fontSize = "2rem";
+                h.style.transition = "2s";
+                document.body.appendChild(h);
+                setTimeout(() => { h.style.transform = "translateY(-100vh)"; h.style.opacity = "0"; }, 100);
+                setTimeout(() => h.remove(), 2000);
+            }
+        }
+
+        function startMap() {
+            document.getElementById('line').style.width = "200px";
+            setTimeout(() => document.getElementById('map-next').classList.remove('hidden'), 2000);
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 100 - 50;
+            btn.style.left = (50 + x) + "px";
+            btn.style.top = (20 + y) + "px";
+        }
+    </script>
 </body>
 </html>
