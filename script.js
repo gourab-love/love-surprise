@@ -8,10 +8,8 @@ function next(id) {
 }
 
 function startTree() {
-    // Clear previous if any
-    document.getElementById("headline").innerHTML = "";
-    document.getElementById("sub-quote").innerHTML = "";
-    
+    document.getElementById("headline").innerText = "";
+    document.getElementById("sub-quote").innerText = "";
     typeWriter("To My Love,", "headline", () => {
         typeWriter("In a world full of temporary things, you are my forever. Just like this tree, our bond grows deeper every day, weather-proof and beautiful. You are the soul that makes my life worth living...", "sub-quote", () => {
             document.getElementById('to-cards').classList.remove('hidden');
@@ -25,88 +23,73 @@ function growHearts() {
     for(let i=0; i<30; i++) {
         setTimeout(() => {
             const h = document.createElement('div');
-            h.className = 'heart-leaf';
-            // Randomly placing hearts within tree bounds
-            h.style.left = (Math.random() * 60 + 20) + '%'; 
+            h.className = 'h-leaf';
+            h.style.left = (Math.random() * 60 + 20) + '%';
             h.style.top = (Math.random() * 50 + 10) + '%';
             container.appendChild(h);
-        }, i * 100);
+        }, i * 150);
     }
 }
 
-// Cards
+// Cards Grid
 const grid = document.getElementById('cards-grid');
 reasons.forEach((text, i) => {
     const card = document.createElement('div');
     card.className = 'card';
-    card.innerHTML = `<div class="card-inner"><div class="card-front">#${i+1}</div><div class="card-back">${text}</div></div>`;
+    card.innerHTML = `<div class="card-inner"><div class="card-f">#${i+1}</div><div class="card-b">${text}</div></div>`;
     card.onclick = () => card.classList.toggle('open');
     grid.appendChild(card);
 });
 
-// Slider
+// Love Meter Slider
 document.getElementById('love-slider').oninput = function() {
     let v = this.value;
     document.getElementById('meter-fill').style.width = v + "%";
     if(v == 100) {
-        document.getElementById('meter-status').innerText = "Infinity ❤️";
         document.getElementById('meter-next').classList.remove('hidden');
     }
 };
 
-// Map Connection Fixed
 function connectMap() {
-    const line = document.getElementById('map-line-path');
-    line.setAttribute("x2", "80%"); // Connects dot to dot
+    document.getElementById('map-line').setAttribute("x2", "85%");
     setTimeout(() => document.getElementById('map-next').classList.remove('hidden'), 2000);
 }
 
-// Scratch Fix
 function initScratch() {
     const canvas = document.getElementById('scratch-canvas');
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#C0C0C0';
-    ctx.fillRect(0, 0, 400, 200);
+    ctx.fillRect(0, 0, 350, 180);
     ctx.globalCompositeOperation = 'destination-out';
-    
-    const scratch = (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const x = (e.clientX || e.touches[0].clientX) - rect.left;
-        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+    canvas.onmousemove = (e) => {
+        const r = canvas.getBoundingClientRect();
         ctx.beginPath();
-        ctx.arc(x, y, 25, 0, Math.PI * 2);
+        ctx.arc(e.clientX - r.left, e.clientY - r.top, 20, 0, Math.PI*2);
         ctx.fill();
     };
-    canvas.addEventListener('mousemove', scratch);
-    canvas.addEventListener('touchmove', scratch);
 }
 
 function releaseHearts() {
-    for(let i=0; i<20; i++) {
+    for(let i=0; i<15; i++) {
         const h = document.createElement('div');
         h.innerHTML = "❤️";
-        h.className = "floating-heart";
-        h.style.cssText = `position:fixed; left:${Math.random()*100}vw; bottom:0; font-size:2rem; transition:3s linear; z-index:999;`;
+        h.style.position = "fixed";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.bottom = "0";
+        h.style.fontSize = "2rem";
+        h.style.transition = "3s";
         document.body.appendChild(h);
-        setTimeout(() => { h.style.transform = `translateY(-110vh) rotate(${Math.random()*360}deg)`; h.style.opacity="0"; }, 100);
+        setTimeout(() => { h.style.transform = "translateY(-100vh)"; h.style.opacity = "0"; }, 100);
         setTimeout(() => h.remove(), 3000);
     }
 }
 
-function openFinal() {
-    document.getElementById('envelope').classList.add('hidden');
-    document.getElementById('proposal').classList.remove('hidden');
-}
-
 function moveNo() {
     const btn = document.getElementById('no-btn');
-    const x = Math.random() * 300 - 150;
+    const x = Math.random() * 250 - 125;
     const y = Math.random() * 200 - 100;
-    btn.style.left = `calc(50% + ${x}px)`;
-    btn.style.top = `calc(50% + ${y}px)`;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
 }
-
-function celebrate() { alert("I Love You So Much! ❤️ You've made me the happiest!"); }
 
 function typeWriter(t, id, cb) {
     let i = 0; const el = document.getElementById(id);
@@ -115,3 +98,10 @@ function typeWriter(t, id, cb) {
         if(i >= t.length) { clearInterval(timer); if(cb) cb(); }
     }, 40);
 }
+
+function openFinal() {
+    document.getElementById('envelope').classList.add('hidden');
+    document.getElementById('proposal').classList.remove('hidden');
+}
+
+function celebrate() { alert("I Love You Forever! ❤️"); }
