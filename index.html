@@ -34,9 +34,7 @@
 
     <section id="meter-sec" class="section">
         <h2 class="mega-text">How much do I love you?</h2>
-        <div class="meter-bg">
-            <div id="meter-fill"></div>
-        </div>
+        <div class="meter-bg"><div id="meter-fill"></div></div>
         <input type="range" id="love-slider" min="0" max="100" value="0">
         <p id="meter-status">Slide to 100% ❤️</p>
         <button class="btn hidden" id="meter-next" onclick="next('jar-sec')">Next: Jar ↓</button>
@@ -45,7 +43,7 @@
     <section id="jar-sec" class="section">
         <h2 class="mega-text">Tap the Jar</h2>
         <div class="jar-box" onclick="releaseHearts()">
-            <img src="https://img.icons8.com/color/480/honey-jar.png" class="jar-img">
+            <img src="https://cdn-icons-png.flaticon.com/512/3699/3699478.png" class="jar-img" id="love-jar">
         </div>
         <button class="btn" onclick="next('map-sec')">Our Journey ↓</button>
     </section>
@@ -55,7 +53,9 @@
         <div class="map-track">
             <div class="dot d1"><span>You</span></div>
             <div class="dot d2"><span>Me</span></div>
-            <svg class="map-svg"><line id="map-line" x1="15%" y1="50%" x2="15%" y2="50%" /></svg>
+            <svg class="map-svg">
+                <line id="map-line" x1="20%" y1="50%" x2="20%" y2="50%" stroke="#ff4d6d" stroke-width="4" stroke-linecap="round" />
+            </svg>
         </div>
         <button class="btn" onclick="connectMap()">Connect Hearts</button>
         <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">Secret ↓</button>
@@ -71,11 +71,11 @@
     </section>
 
     <section id="final-sec" class="section">
-        <div class="final-wrap">
+        <div class="final-card-container">
             <div id="envelope" onclick="openFinal()">✉️</div>
             <div id="proposal" class="hidden">
                 <h2 class="mega-text">Will you be mine forever?</h2>
-                <div class="btn-container">
+                <div class="final-buttons-fixed">
                     <button class="btn yes" onclick="celebrate()">YES!</button>
                     <button class="btn no" id="no-btn" onmouseover="moveNo()">No</button>
                 </div>
