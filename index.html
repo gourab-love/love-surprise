@@ -10,7 +10,7 @@
 
     <section id="welcome" class="section active">
         <div class="center-content">
-            <h1 class="glow-text">Hey Beautiful ❤️</h1>
+            <h1 class="glow-text big-text">Hey Beautiful ❤️</h1>
             <button class="btn main-btn" onclick="next('tree-sec')">Open My Heart</button>
         </div>
     </section>
@@ -18,8 +18,8 @@
     <section id="tree-sec" class="section">
         <div class="split-container">
             <div class="text-side">
-                <h1 id="headline"></h1>
-                <p id="sub-quote"></p>
+                <h1 id="headline" class="big-text"></h1>
+                <p id="sub-quote" class="romantic-text"></p>
                 <button id="to-cards" class="btn hidden" onclick="next('card-sec')">Next: Reasons Why ↓</button>
             </div>
             <div class="tree-side" id="tree-container">
@@ -30,12 +30,14 @@
 
     <section id="card-sec" class="section col">
         <h2 class="section-title">10 Reasons Why I Love You</h2>
-        <div class="cards-grid" id="cards-grid"></div>
+        <div class="cards-grid-wrapper">
+            <div class="cards-grid" id="cards-grid"></div>
+        </div>
         <button class="btn" onclick="next('meter-sec')">Measure My Love ↓</button>
     </section>
 
     <section id="meter-sec" class="section col">
-        <h2>How much do I love you?</h2>
+        <h2 class="big-text">How much do I love you?</h2>
         <div class="meter-container"><div id="meter-fill"></div></div>
         <input type="range" id="love-slider" min="0" max="100" value="0">
         <p id="meter-status">Slide to 100% to see the truth...</p>
@@ -43,26 +45,30 @@
     </section>
 
     <section id="jar-sec" class="section col">
-        <h2>Tap the Jar to release my Love</h2>
+        <h2 class="big-text">Tap the Jar to release my Love</h2>
         <div class="jar-wrapper" onclick="releaseHearts()">
-            <img src="https://cdn-icons-png.flaticon.com/512/3699/3699478.png" class="jar-img">
+            <img src="https://img.icons8.com/color/480/honey-jar.png" class="jar-img" alt="Jar">
         </div>
         <button class="btn" onclick="next('map-sec')">Our Journey ↓</button>
     </section>
 
     <section id="map-sec" class="section col">
-        <h2>Distance Doesn't Matter</h2>
-        <div class="map-box">
-            <div class="point p1"></div>
-            <div class="point p2"></div>
-            <div id="map-line" class="line-path"></div>
+        <h2 class="big-text">Distance Doesn't Matter</h2>
+        <div class="map-container-new">
+            <div class="map-box-new">
+                <div class="point p1-new"><span>You</span></div>
+                <div class="point p2-new"><span>Me</span></div>
+                <svg class="map-svg">
+                    <line id="map-line-new" x1="15%" y1="50%" x2="15%" y2="50%" />
+                </svg>
+            </div>
         </div>
         <button class="btn" onclick="connectMap()">Connect Our Hearts</button>
         <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">A Secret Message ↓</button>
     </section>
 
     <section id="scratch-sec" class="section col">
-        <h2>Scratch to Reveal my Secret</h2>
+        <h2 class="big-text">Scratch to Reveal my Secret</h2>
         <div class="scratch-container">
             <div class="scratch-content">You are my Greatest Adventure! ❤️</div>
             <canvas id="scratch-canvas" width="300" height="150"></canvas>
@@ -74,8 +80,8 @@
         <div class="final-card">
             <div id="envelope" onclick="openFinal()">✉️</div>
             <div id="proposal" class="hidden">
-                <h2>Will you be mine forever?</h2>
-                <div class="btn-group">
+                <h2 class="big-text">Will you be mine forever?</h2>
+                <div class="btn-group-final">
                     <button class="btn yes" onclick="celebrate()">YES!</button>
                     <button class="btn no" id="no-btn" onmouseover="moveNo()">No</button>
                 </div>
