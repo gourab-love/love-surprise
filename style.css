@@ -1,0 +1,103 @@
+:root {
+    --primary: #ff4d6d;
+    --bg: #fff5f7;
+    --brown: #5d4037;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    overflow-x: hidden;
+}
+
+.section {
+    min-height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.section.active { display: flex; }
+
+/* Welcome Screen */
+.glow-text {
+    font-size: 3rem;
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(255, 77, 109, 0.3);
+    animation: pulse 2s infinite;
+}
+
+#start-btn {
+    padding: 15px 30px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* Tree & Hearts */
+#trunk {
+    width: 12px;
+    background: var(--brown);
+    height: 0;
+    transition: height 2s ease;
+    border-radius: 10px;
+    position: relative;
+}
+
+.heart {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--primary);
+    transform: rotate(-45deg);
+    border-radius: 0;
+}
+.heart::before, .heart::after {
+    content: '';
+    width: 15px; height: 15px;
+    background: var(--primary);
+    border-radius: 50%;
+    position: absolute;
+}
+.heart::before { top: -8px; left: 0; }
+.heart::after { left: 8px; top: 0; }
+
+/* Polaroids */
+.polaroid-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: rotate(-3deg);
+    transition: 0.3s;
+    width: 200px;
+}
+
+.polaroid:nth-child(even) { transform: rotate(3deg); }
+
+.polaroid-text {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+#no-btn { position: absolute; }
+
+.hidden { display: none; }
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
