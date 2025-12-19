@@ -9,7 +9,8 @@ function next(id) {
 
 function startTree() {
     typeWriter("To My Love,", "headline", () => {
-        typeWriter("My love for you grows like this tree...", "sub-quote", () => {
+        // Updated longer, more special text
+        typeWriter("In a world full of temporary things, you are my forever. Just like this tree, our bond grows deeper every day, weather-proof and beautiful. You aren't just a part of my life; you are the soul that makes it worth living...", "sub-quote", () => {
             document.getElementById('to-cards').classList.remove('hidden');
         });
         growHearts();
@@ -18,18 +19,18 @@ function startTree() {
 
 function growHearts() {
     const container = document.getElementById('tree-container');
-    for(let i=0; i<20; i++) {
+    for(let i=0; i<25; i++) {
         setTimeout(() => {
             const h = document.createElement('div');
             h.className = 'heart-leaf';
-            h.style.left = (Math.random() * 250 + 50) + 'px';
-            h.style.top = (Math.random() * 200 + 50) + 'px';
+            h.style.left = (Math.random() * 300 + 50) + 'px';
+            h.style.top = (Math.random() * 250 + 50) + 'px';
             container.appendChild(h);
-        }, i * 200);
+        }, i * 150);
     }
 }
 
-// Generate Cards
+// Cards Logic
 const grid = document.getElementById('cards-grid');
 reasons.forEach((text, i) => {
     const card = document.createElement('div');
@@ -44,36 +45,24 @@ document.getElementById('love-slider').oninput = function() {
     let v = this.value;
     document.getElementById('meter-fill').style.width = v + "%";
     if(v == 100) {
-        document.getElementById('meter-status').innerText = "Infinity ❤️";
+        document.getElementById('meter-status').innerText = "Infinity and Beyond! ❤️";
         document.getElementById('meter-next').classList.remove('hidden');
     }
 };
 
-// Jar Hearts
-function releaseHearts() {
-    for(let i=0; i<10; i++) {
-        const h = document.createElement('div');
-        h.innerHTML = "❤️";
-        h.style.position = "fixed";
-        h.style.left = Math.random() * 100 + "vw";
-        h.style.bottom = "0";
-        h.style.fontSize = "2rem";
-        h.style.transition = "3s";
-        document.body.appendChild(h);
-        setTimeout(() => { h.style.transform = "translateY(-100vh)"; h.style.opacity = "0"; }, 100);
-        setTimeout(() => h.remove(), 3000);
-    }
-}
-
+// Map Connection Fix
 function connectMap() {
-    document.getElementById('map-line').style.width = "80%";
+    const line = document.getElementById('map-line-new');
+    line.setAttribute("x2", "85%"); // Connects exactly to the second dot
+    line.style.strokeDashoffset = "0";
     setTimeout(() => document.getElementById('map-next').classList.remove('hidden'), 2000);
 }
 
+// Scratch Card
 function initScratch() {
     const canvas = document.getElementById('scratch-canvas');
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#c0c0c0';
+    ctx.fillStyle = '#d1d1d1';
     ctx.fillRect(0, 0, 300, 150);
     ctx.globalCompositeOperation = 'destination-out';
     canvas.onmousemove = (e) => {
@@ -84,12 +73,27 @@ function initScratch() {
     };
 }
 
+function releaseHearts() {
+    for(let i=0; i<15; i++) {
+        const h = document.createElement('div');
+        h.innerHTML = "❤️";
+        h.style.position = "fixed";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.bottom = "-50px";
+        h.style.fontSize = (Math.random() * 2 + 1) + "rem";
+        h.style.transition = "transform 3s linear, opacity 3s";
+        document.body.appendChild(h);
+        setTimeout(() => { h.style.transform = "translateY(-110vh)"; h.style.opacity = "0"; }, 100);
+        setTimeout(() => h.remove(), 3000);
+    }
+}
+
 function typeWriter(t, id, cb) {
     let i = 0; const el = document.getElementById(id);
     const timer = setInterval(() => {
         el.innerHTML += t[i]; i++;
         if(i >= t.length) { clearInterval(timer); if(cb) cb(); }
-    }, 50);
+    }, 40);
 }
 
 function openFinal() {
@@ -99,8 +103,12 @@ function openFinal() {
 
 function moveNo() {
     const btn = document.getElementById('no-btn');
-    btn.style.left = Math.random() * 80 + "%";
-    btn.style.top = Math.random() * 80 + "%";
+    // Limited range so it stays somewhat nearby but unreachable
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-function celebrate() { alert("I Love You Forever! ❤️"); }
+function celebrate() {
+    alert("I Knew it! You've made me the happiest person! ❤️");
+}
