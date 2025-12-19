@@ -3,215 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Special Someone</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #fff5f7;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #d63384;
-        }
-
-        /* 1. Welcome Screen */
-        #welcome-screen {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffdeeb;
-            position: fixed;
-            z-index: 100;
-            transition: opacity 1s ease;
-        }
-
-        .fade-out { opacity: 0; pointer-events: none; }
-
-        .welcome-text {
-            font-size: 2.5rem;
-            animation: heartBeat 1.5s infinite;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        /* 2. Main Content */
-        #main-content {
-            display: none;
-            width: 100%;
-            text-align: center;
-            padding-top: 50px;
-        }
-
-        .quote {
-            font-style: italic;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            min-height: 50px;
-        }
-
-        /* 3. The Tree Container */
-        #tree-container {
-            position: relative;
-            width: 300px;
-            height: 400px;
-            margin: 0 auto;
-        }
-
-        .trunk {
-            width: 10px;
-            background: #5d4037;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            height: 0;
-            transition: height 2s ease-in-out;
-            border-radius: 5px;
-        }
-
-        .heart-leaf {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff4d6d;
-            transform: rotate(-45deg);
-            opacity: 0;
-            transition: opacity 0.5s ease-in;
-        }
-
-        .heart-leaf::before, .heart-leaf::after {
-            content: "";
-            width: 20px;
-            height: 20px;
-            background: #ff4d6d;
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        .heart-leaf::before { top: -10px; left: 0; }
-        .heart-leaf::after { left: 10px; top: 0; }
-
-        /* 4. Interactive Buttons */
-        #final-step {
-            margin-top: 50px;
-            display: none;
-        }
-
-        .btn {
-            padding: 10px 25px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 10px;
-            transition: 0.3s;
-        }
-
-        #yes-btn { background: #ff4d6d; color: white; }
-        #no-btn { background: #ccc; color: #333; position: absolute; }
-
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
+    <title>For My Love ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="welcome-screen" onclick="startSurprise()">
-        <div class="welcome-text">Hey Beautiful ❤️<br><small style="font-size: 1rem;">(Click to Open)</small></div>
-    </div>
-
-    <div id="main-content">
-        <div class="quote" id="quote-text"></div>
-        
-        <div id="tree-container">
-            <div class="trunk" id="trunk"></div>
-            </div>
-
-        <div id="final-step">
-            <h3>Will you be my date forever?</h3>
-            <button class="btn" id="yes-btn" onclick="celebrate()">YES!</button>
-            <button class="btn" id="no-btn" onmouseover="moveNo()">No</button>
+    <div id="welcome-screen" class="section active">
+        <div class="welcome-content">
+            <h1 class="glow-text">Hey Beautiful ❤️</h1>
+            <button id="start-btn">Open My Heart</button>
         </div>
     </div>
 
-    <script>
-        const quote = "In your smile, I see something more beautiful than the stars...";
-        let i = 0;
+    <div id="tree-section" class="section">
+        <div class="quote-container">
+            <p id="typewriter-quote"></p>
+        </div>
+        <div class="tree-canvas">
+            <div id="trunk"></div>
+            <div id="leaves-container"></div>
+        </div>
+        <div id="bubbles-container"></div>
+    </div>
 
-        function startSurprise() {
-            // Hide welcome screen
-            document.getElementById('welcome-screen').classList.add('fade-out');
-            document.getElementById('main-content').style.display = 'block';
+    <div id="memory-section" class="section">
+        <h2 class="title">Our Digital Memories</h2>
+        <div class="polaroid-container">
+            <div class="polaroid">
+                <div class="polaroid-text">The first time we talked...</div>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-text">That late night conversation...</div>
+            </div>
+            <div class="polaroid">
+                <div class="polaroid-text">Every moment with you is magic...</div>
+            </div>
+        </div>
+        <button id="final-trigger">Wait, there's more!</button>
+    </div>
 
-            // Start typing animation
-            typeWriter();
-            
-            // Start tree growth after a short delay
-            setTimeout(growTree, 1000);
-        }
+    <div id="final-section" class="section">
+        <div class="envelope" id="envelope">✉️</div>
+        <div id="letter-content" class="hidden">
+            <p>You mean the world to me. Thank you for being you!</p>
+        </div>
+        
+        <div class="gift-box" id="gift">🎁</div>
+        <div id="proposal" class="hidden">
+            <h3>Coffee date this weekend?</h3>
+            <div class="btn-group">
+                <button id="yes-btn">Yes, I'd love to!</button>
+                <button id="no-btn">No</button>
+            </div>
+        </div>
+    </div>
 
-        function typeWriter() {
-            if (i < quote.length) {
-                document.getElementById("quote-text").innerHTML += quote.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-
-        function growTree() {
-            const trunk = document.getElementById('trunk');
-            trunk.style.height = '200px';
-
-            // Create heart leaves
-            setTimeout(() => {
-                for(let j=0; j<20; j++) {
-                    setTimeout(() => {
-                        createLeaf();
-                    }, j * 200);
-                }
-                // Show final buttons after tree grows
-                setTimeout(() => {
-                    document.getElementById('final-step').style.display = 'block';
-                }, 4500);
-            }, 2000);
-        }
-
-        function createLeaf() {
-            const container = document.getElementById('tree-container');
-            const leaf = document.createElement('div');
-            leaf.className = 'heart-leaf';
-            
-            // Random positions around the top of the trunk
-            const x = Math.random() * 200 - 100 + 150;
-            const y = Math.random() * 150 + 50;
-            
-            leaf.style.left = x + 'px';
-            leaf.style.top = y + 'px';
-            leaf.style.opacity = '1';
-            
-            container.appendChild(leaf);
-        }
-
-        function moveNo() {
-            const btn = document.getElementById('no-btn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
-
-        function celebrate() {
-            alert("Yay! I love you! ❤️");
-            // Yahan aap confetti library ya koi aur message daal sakte hain
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
