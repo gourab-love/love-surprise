@@ -15,12 +15,18 @@ body {
   gap: 80px;
 }
 
+/* ✍️ Typing text */
 .text {
   font-size: 1.8rem;
-  width: 320px;
+  width: 340px;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid white;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
 }
 
 .hidden {
@@ -34,53 +40,75 @@ body {
   height: 360px;
 }
 
+/* trunk grow */
 .trunk {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 26px;
-  height: 220px;
+  width: 28px;
+  height: 0;
   background: linear-gradient(#6b3f2b, #3b2215);
   transform: translateX(-50%);
-  border-radius: 6px;
+  border-radius: 8px;
+  animation: growTrunk 2.5s forwards;
 }
 
+@keyframes growTrunk {
+  to { height: 220px; }
+}
+
+/* branches */
 .branch {
   position: absolute;
-  width: 80px;
+  width: 90px;
   height: 6px;
   background: #5a331f;
   top: 120px;
+  opacity: 0;
+  animation: branchIn 1s forwards;
+  animation-delay: 2.5s;
 }
 
-.branch.left { left: 20px; transform: rotate(-30deg); }
-.branch.right { right: 20px; transform: rotate(30deg); }
+.branch.left {
+  left: 15px;
+  transform: rotate(-30deg);
+}
 
-/* ❤️ Heart leaves */
+.branch.right {
+  right: 15px;
+  transform: rotate(30deg);
+}
+
+@keyframes branchIn {
+  to { opacity: 1; }
+}
+
+/* ❤️ Leaves */
 .leaf {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   background: #ff4d6d;
-  transform: rotate(-45deg);
-  box-shadow: 0 0 12px #ff4d6d;
+  transform: scale(0) rotate(-45deg);
+  box-shadow: 0 0 14px #ff4d6d;
+  animation: leafPop 0.8s forwards;
 }
 
 .leaf::before,
 .leaf::after {
   content: "";
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   background: #ff4d6d;
   border-radius: 50%;
 }
 
-.leaf::before { top: -12px; }
-.leaf::after { left: 12px; }
+.leaf::before { top: -13px; }
+.leaf::after { left: 13px; }
 
-.l1 { top: 40px; left: 80px; }
-.l2 { top: 60px; right: 80px; }
-.l3 { top: 20px; left: 60px; }
-.l4 { top: 30px; right: 60px; }
+@keyframes leafPop {
+  to { transform: scale(1) rotate(-45deg); }
+}
 
+.l1 { top: 40px; left: 80px; animat
