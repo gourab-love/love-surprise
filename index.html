@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      color: #fff;
+      animation: fadeIn 2s ease-in;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      animation: typing 4s steps(40, end);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid white;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards;
+      animation-delay: 4s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Hey… this is not a normal website 💫</h1>
+    <p>This is made only for you ❤️</p>
+  </div>
+</body>
+</html>
