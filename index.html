@@ -5,124 +5,184 @@
 <title>For You ❤️</title>
 
 <style>
+/* 🌌 Background */
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(to top, #ffdde1, #ee9ca7);
+  background: radial-gradient(circle at top, #2b1055, #000);
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+/* ✨ Floating glow particles */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: pink;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+
+/* 🌸 Center content */
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Segoe UI', sans-serif;
-  overflow: hidden;
+  gap: 80px;
 }
 
-.main {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  padding: 20px;
-}
-
-.quote {
-  color: white;
-  font-size: 1.5rem;
-  width: 260px;
+/* ✍️ Text */
+.text {
+  font-size: 1.8rem;
+  width: 320px;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid white;
-  animation: typing 5s steps(50, end), blink .7s infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 260px }
-}
-
-@keyframes blink {
-  50% { border-color: transparent; }
+  display: none;
 }
 
 /* 🌳 Tree */
 .tree {
   position: relative;
-  width: 120px;
-  height: 300px;
+  width: 200px;
+  height: 360px;
+  display: none;
 }
 
+/* trunk */
 .trunk {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 20px;
+  width: 26px;
   height: 0;
-  background: #5b3a29;
+  background: linear-gradient(#6b3f2b, #3b2215);
   transform: translateX(-50%);
+  border-radius: 6px;
   animation: growTrunk 3s forwards;
 }
 
-@keyframes growTrunk {
-  to { height: 180px; }
+/* branches */
+.branch {
+  position: absolute;
+  width: 80px;
+  height: 6px;
+  background: #5a331f;
+  top: 120px;
 }
 
-/* ❤️ Leaves */
+.branch.left {
+  left: 20px;
+  transform: rotate(-30deg);
+}
+
+.branch.right {
+  right: 20px;
+  transform: rotate(30deg);
+}
+
+/* ❤️ Heart leaves */
 .leaf {
   position: absolute;
-  width: 22px;
-  height: 22px;
-  background: red;
+  width: 24px;
+  height: 24px;
+  background: #ff4d6d;
   transform: rotate(-45deg);
   opacity: 0;
-  animation: leafGrow 1s forwards;
+  animation: leafPop 1s forwards;
+  box-shadow: 0 0 10px #ff4d6d;
 }
 
 .leaf::before,
 .leaf::after {
   content: "";
   position: absolute;
-  width: 22px;
-  height: 22px;
-  background: red;
+  width: 24px;
+  height: 24px;
+  background: #ff4d6d;
   border-radius: 50%;
 }
 
-.leaf::before {
-  top: -11px;
-  left: 0;
+.leaf::before { top: -12px; left: 0; }
+.leaf::after { left: 12px; top: 0; }
+
+@keyframes growTrunk {
+  to { height: 220px; }
 }
 
-.leaf::after {
-  left: 11px;
-  top: 0;
+@keyframes leafPop {
+  to { opacity: 1; transform: scale(1) rotate(-45deg); }
 }
 
-@keyframes leafGrow {
-  to { opacity: 1; }
-}
-
-.leaf1 { top: 40px; left: 30px; animation-delay: 3s; }
-.leaf2 { top: 20px; right: 30px; animation-delay: 3.5s; }
-.leaf3 { top: 70px; left: 10px; animation-delay: 4s; }
-.leaf4 { top: 60px; right: 10px; animation-delay: 4.5s; }
+/* positions */
+.l1 { top: 40px; left: 80px; animation-delay: 3s; }
+.l2 { top: 60px; right: 80px; animation-delay: 3.5s; }
+.l3 { top: 20px; left: 60px; animation-delay: 4s; }
+.l4 { top: 30px; right: 60px; animation-delay: 4.5s; }
 
 </style>
 </head>
 
 <body>
 
-<div class="main">
-  <div class="quote">
-    Love grows silently… just like this 🌸
-  </div>
+<!-- ✨ particles -->
+<script>
+for (let i = 0; i < 40; i++) {
+  let p = document.createElement("div");
+  p.className = "particle";
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDelay = Math.random() * 8 + "s";
+  document.body.appendChild(p);
+}
+</script>
 
-  <div class="tree">
+<div class="container">
+  <div id="text1" class="text">Hey… this is not a normal website 💫</div>
+  <div id="text2" class="text">Love grows silently… just like this 🌸</div>
+
+  <div id="tree" class="tree">
     <div class="trunk"></div>
+    <div class="branch left"></div>
+    <div class="branch right"></div>
 
-    <div class="leaf leaf1"></div>
-    <div class="leaf leaf2"></div>
-    <div class="leaf leaf3"></div>
-    <div class="leaf leaf4"></div>
+    <div class="leaf l1"></div>
+    <div class="leaf l2"></div>
+    <div class="leaf l3"></div>
+    <div class="leaf l4"></div>
   </div>
 </div>
+
+<script>
+/* ⏳ Sequence control */
+const t1 = document.getElementById("text1");
+const t2 = document.getElementById("text2");
+const tree = document.getElementById("tree");
+
+setTimeout(() => {
+  t1.style.display = "block";
+}, 500);
+
+setTimeout(() => {
+  t1.style.display = "none";
+  t2.style.display = "block";
+}, 4000);
+
+setTimeout(() => {
+  tree.style.display = "block";
+}, 7000);
+</script>
 
 </body>
 </html>
