@@ -43,5 +43,53 @@ body { margin: 0; font-family: 'Poppins', sans-serif; background: var(--bg); ove
 .btn-group-final { position: relative; height: 100px; width: 300px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
 .no { position: absolute; transition: 0.2s; white-space: nowrap; }
 
+/* ... (Aapka purana CSS upar rahega) ... */
+
+/* --- MOBILE RESPONSIVE ADDITIONS --- */
+
+@media (max-width: 768px) {
+    /* Text scaling */
+    .big-text { font-size: 2.2rem !important; }
+    .romantic-text { font-size: 1.1rem; padding: 0 10px; }
+    
+    /* Section 2: Tree Section (Stacking) */
+    .split-container { 
+        flex-direction: column; 
+        justify-content: center;
+        gap: 20px;
+    }
+    .text-side { 
+        padding: 20px; 
+        text-align: center; 
+        order: 2; /* Text niche aayega */
+    }
+    .tree-side { 
+        order: 1; /* Tree upar aayega */
+        width: 100%;
+    }
+    #realistic-tree { width: 250px; }
+
+    /* Section 3: Cards Grid (2 columns on mobile) */
+    .cards-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+        padding: 10px;
+    }
+    .card { width: 140px; height: 140px; }
+
+    /* Section 6: Map Section */
+    .map-box-new { width: 95%; height: 100px; }
+    
+    /* Section 7: Scratch Card */
+    .scratch-container { width: 280px; height: 140px; }
+    #scratch-canvas { width: 280px; height: 140px; }
+
+    /* Final Buttons */
+    .btn-group-final { width: 100%; height: 150px; }
+    .btn { padding: 12px 30px; font-size: 1rem; }
+}
+
+/* Touch Support Fix */
+canvas { touch-action: none; }
 /* Existing Buttons */
 .btn { padding: 15px 40px; border-radius: 50px; border: none; background: var(--pink); color: white; cursor: pointer; font-size: 1.1rem; font-weight: 600; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3); }
