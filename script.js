@@ -112,3 +112,45 @@ function moveNo() {
 function celebrate() {
     alert("I Knew it! You've made me the happiest person! ❤️");
 }
+// ... (Purana code same rahega, bas in functions ko update karein)
+
+function initScratch() {
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#d1d1d1';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalCompositeOperation = 'destination-out';
+
+    // Touch and Mouse support
+    function scratch(e) {
+        const r = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - r.left;
+        const y = (e.clientY || e.touches[0].clientY) - r.top;
+        ctx.beginPath();
+        ctx.arc(x, y, 25, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    canvas.addEventListener('mousemove', scratch);
+    canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault(); // Screen scroll hone se rokta hai scratch karte waqt
+        scratch(e);
+    }, { passive: false });
+}
+
+function moveNo() {
+    const btn = document.getElementById('no-btn');
+    // Mobile par button screen se bahar na jaye, isliye range kam rakhi hai
+    const isMobile = window.innerWidth < 768;
+    const range = isMobile ? 80 : 150; 
+    
+    const x = Math.random() * (range * 2) - range;
+    const y = Math.random() * (range * 2) - range;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+// Mobile par touch pe bhi button bhagega
+document.getElementById('no-btn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    moveNo();
+});
