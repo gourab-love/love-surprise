@@ -1,58 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(to top, #ffdde1, #ee9ca7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<title>For You ❤️</title>
 
-    .container {
-      text-align: center;
-      color: #fff;
-      animation: fadeIn 2s ease-in;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to top, #ffdde1, #ee9ca7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
 
-    h1 {
-      font-size: 2.2rem;
-      animation: typing 4s steps(40, end);
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid white;
-    }
+.main {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 20px;
+}
 
-    p {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      opacity: 0;
-      animation: fadeIn 2s ease-in forwards;
-      animation-delay: 4s;
-    }
+.quote {
+  color: white;
+  font-size: 1.5rem;
+  width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+  animation: typing 5s steps(50, end), blink .7s infinite;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 260px }
+}
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-  </style>
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* 🌳 Tree */
+.tree {
+  position: relative;
+  width: 120px;
+  height: 300px;
+}
+
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 20px;
+  height: 0;
+  background: #5b3a29;
+  transform: translateX(-50%);
+  animation: growTrunk 3s forwards;
+}
+
+@keyframes growTrunk {
+  to { height: 180px; }
+}
+
+/* ❤️ Leaves */
+.leaf {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: red;
+  transform: rotate(-45deg);
+  opacity: 0;
+  animation: leafGrow 1s forwards;
+}
+
+.leaf::before,
+.leaf::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: red;
+  border-radius: 50%;
+}
+
+.leaf::before {
+  top: -11px;
+  left: 0;
+}
+
+.leaf::after {
+  left: 11px;
+  top: 0;
+}
+
+@keyframes leafGrow {
+  to { opacity: 1; }
+}
+
+.leaf1 { top: 40px; left: 30px; animation-delay: 3s; }
+.leaf2 { top: 20px; right: 30px; animation-delay: 3.5s; }
+.leaf3 { top: 70px; left: 10px; animation-delay: 4s; }
+.leaf4 { top: 60px; right: 10px; animation-delay: 4.5s; }
+
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Hey… this is not a normal website 💫</h1>
-    <p>This is made only for you ❤️</p>
+
+<div class="main">
+  <div class="quote">
+    Love grows silently… just like this 🌸
   </div>
+
+  <div class="tree">
+    <div class="trunk"></div>
+
+    <div class="leaf leaf1"></div>
+    <div class="leaf leaf2"></div>
+    <div class="leaf leaf3"></div>
+    <div class="leaf leaf4"></div>
+  </div>
+</div>
+
 </body>
 </html>
