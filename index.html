@@ -9,75 +9,75 @@
 <body>
 
     <section id="welcome" class="section active">
-        <div class="center-all">
-            <h1 class="glow-text mega-text">Hey Beautiful ❤️</h1>
-            <button class="btn big-btn" onclick="next('tree-sec')">Open My Heart</button>
-        </div>
+        <h1 class="mega-text">Hey Beautiful ❤️</h1>
+        <button class="btn big" onclick="next('tree-sec')">Open My Heart</button>
     </section>
 
     <section id="tree-sec" class="section">
         <div class="tree-layout">
-            <div class="tree-text">
+            <div class="tree-text-box">
                 <h1 id="headline" class="mega-text"></h1>
-                <p id="sub-quote" class="romantic-text"></p>
-                <button id="to-cards" class="btn hidden" onclick="next('card-sec')">Next: Reasons Why ↓</button>
+                <p id="sub-quote" class="romantic-p"></p>
+                <button id="to-cards" class="btn hidden" onclick="next('card-sec')">Reasons Why ↓</button>
             </div>
-            <div class="tree-img-container" id="tree-container">
-                <img src="tree.png" id="realistic-tree">
-                </div>
+            <div class="tree-visual" id="tree-container">
+                <img src="tree.png" id="main-tree">
+            </div>
         </div>
     </section>
 
-    <section id="card-sec" class="section col">
-        <h2 class="section-title mega-text">10 Reasons Why I Love You</h2>
+    <section id="card-sec" class="section">
+        <h2 class="mega-text">10 Reasons Why I Love You</h2>
         <div class="cards-grid" id="cards-grid"></div>
         <button class="btn" onclick="next('meter-sec')">Measure My Love ↓</button>
     </section>
 
-    <section id="meter-sec" class="section col">
+    <section id="meter-sec" class="section">
         <h2 class="mega-text">How much do I love you?</h2>
-        <div class="meter-container"><div id="meter-fill"></div></div>
+        <div class="meter-bg">
+            <div id="meter-fill"></div>
+        </div>
         <input type="range" id="love-slider" min="0" max="100" value="0">
-        <p id="meter-status" class="romantic-text">Slide to 100% to see the truth...</p>
-        <button class="btn hidden" id="meter-next" onclick="next('jar-sec')">Next: Jar of Hearts ↓</button>
+        <p id="meter-status">Slide to 100% ❤️</p>
+        <button class="btn hidden" id="meter-next" onclick="next('jar-sec')">Next: Jar ↓</button>
     </section>
 
-    <section id="jar-sec" class="section col">
-        <h2 class="mega-text">Tap the Jar to release my Love</h2>
-        <div class="jar-wrapper" onclick="releaseHearts()">
-            <img src="https://img.icons8.com/color/480/candy-jar.png" class="jar-img" alt="Jar">
+    <section id="jar-sec" class="section">
+        <h2 class="mega-text">Tap the Jar</h2>
+        <div class="jar-box" onclick="releaseHearts()">
+            <img src="https://img.icons8.com/color/480/honey-jar.png" class="jar-img">
         </div>
         <button class="btn" onclick="next('map-sec')">Our Journey ↓</button>
     </section>
 
-    <section id="map-sec" class="section col">
+    <section id="map-sec" class="section">
         <h2 class="mega-text">Distance Doesn't Matter</h2>
-        <div class="map-box-fixed">
+        <div class="map-track">
             <div class="dot d1"><span>You</span></div>
             <div class="dot d2"><span>Me</span></div>
-            <svg width="100%" height="100%"><line id="map-line-path" x1="20%" y1="50%" x2="20%" y2="50%" /></svg>
+            <svg class="map-svg"><line id="map-line" x1="15%" y1="50%" x2="15%" y2="50%" /></svg>
         </div>
-        <button class="btn" onclick="connectMap()">Connect Our Hearts</button>
-        <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">A Secret Message ↓</button>
+        <button class="btn" onclick="connectMap()">Connect Hearts</button>
+        <button class="btn hidden" id="map-next" onclick="next('scratch-sec')">Secret ↓</button>
     </section>
 
-    <section id="scratch-sec" class="section col">
-        <h2 class="mega-text">Scratch to Reveal my Secret</h2>
-        <div class="scratch-outer">
-            <div class="scratch-inner">You are my Greatest Adventure! ❤️</div>
-            <canvas id="scratch-canvas" width="400" height="200"></canvas>
+    <section id="scratch-sec" class="section">
+        <h2 class="mega-text">Scratch the Secret</h2>
+        <div class="scratch-card-box">
+            <div class="scratch-text">You are my Greatest Adventure! ❤️</div>
+            <canvas id="scratch-canvas" width="350" height="180"></canvas>
         </div>
-        <button class="btn" onclick="next('final-sec')">One Last Thing... ↓</button>
+        <button class="btn" onclick="next('final-sec')">Final Surprise ↓</button>
     </section>
 
-    <section id="final-sec" class="section col">
-        <div id="envelope-box">
-            <div id="envelope" onclick="openFinal()" style="font-size: 8rem; cursor:pointer;">✉️</div>
+    <section id="final-sec" class="section">
+        <div class="final-wrap">
+            <div id="envelope" onclick="openFinal()">✉️</div>
             <div id="proposal" class="hidden">
                 <h2 class="mega-text">Will you be mine forever?</h2>
-                <div class="final-buttons">
-                    <button class="btn yes-btn" onclick="celebrate()">YES!</button>
-                    <button class="btn no-btn" id="no-btn" onmouseover="moveNo()">No</button>
+                <div class="btn-container">
+                    <button class="btn yes" onclick="celebrate()">YES!</button>
+                    <button class="btn no" id="no-btn" onmouseover="moveNo()">No</button>
                 </div>
             </div>
         </div>
