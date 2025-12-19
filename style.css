@@ -1,1 +1,86 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #2b1055, #000);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+}
+
+.text {
+  font-size: 1.8rem;
+  width: 320px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 🌳 Tree */
+.tree {
+  position: relative;
+  width: 200px;
+  height: 360px;
+}
+
+.trunk {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 26px;
+  height: 220px;
+  background: linear-gradient(#6b3f2b, #3b2215);
+  transform: translateX(-50%);
+  border-radius: 6px;
+}
+
+.branch {
+  position: absolute;
+  width: 80px;
+  height: 6px;
+  background: #5a331f;
+  top: 120px;
+}
+
+.branch.left { left: 20px; transform: rotate(-30deg); }
+.branch.right { right: 20px; transform: rotate(30deg); }
+
+/* ❤️ Heart leaves */
+.leaf {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #ff4d6d;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 12px #ff4d6d;
+}
+
+.leaf::before,
+.leaf::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.leaf::before { top: -12px; }
+.leaf::after { left: 12px; }
+
+.l1 { top: 40px; left: 80px; }
+.l2 { top: 60px; right: 80px; }
+.l3 { top: 20px; left: 60px; }
+.l4 { top: 30px; right: 60px; }
 
