@@ -1,28 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>For You ❤️</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special Someone</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff5f7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #d63384;
+        }
 
+        /* 1. Welcome Screen */
+        #welcome-screen {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffdeeb;
+            position: fixed;
+            z-index: 100;
+            transition: opacity 1s ease;
+        }
+
+        .fade-out { opacity: 0; pointer-events: none; }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            animation: heartBeat 1.5s infinite;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* 2. Main Content */
+        #main-content {
+            display: none;
+            width: 100%;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            min-height: 50px;
+        }
+
+        /* 3. The Tree Container */
+        #tree-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .trunk {
+            width: 10px;
+            background: #5d4037;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 0;
+            transition: height 2s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .heart-leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            transform: rotate(-45deg);
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .heart-leaf::before, .heart-leaf::after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            background: #ff4d6d;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart-leaf::before { top: -10px; left: 0; }
+        .heart-leaf::after { left: 10px; top: 0; }
+
+        /* 4. Interactive Buttons */
+        #final-step {
+            margin-top: 50px;
+            display: none;
+        }
+
+        .btn {
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+
+        #yes-btn { background: #ff4d6d; color: white; }
+        #no-btn { background: #ccc; color: #333; position: absolute; }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
 <body>
 
-<div class="container">
-  <div id="text" class="text"></div>
+    <div id="welcome-screen" onclick="startSurprise()">
+        <div class="welcome-text">Hey Beautiful ❤️<br><small style="font-size: 1rem;">(Click to Open)</small></div>
+    </div>
 
-  <div id="tree" class="tree hidden">
-    <div class="trunk"></div>
+    <div id="main-content">
+        <div class="quote" id="quote-text"></div>
+        
+        <div id="tree-container">
+            <div class="trunk" id="trunk"></div>
+            </div>
 
-    <div class="branch left"></div>
-    <div class="branch right"></div>
+        <div id="final-step">
+            <h3>Will you be my date forever?</h3>
+            <button class="btn" id="yes-btn" onclick="celebrate()">YES!</button>
+            <button class="btn" id="no-btn" onmouseover="moveNo()">No</button>
+        </div>
+    </div>
 
-    <div class="leaf l1"></div>
-    <div class="leaf l2"></div>
-    <div class="leaf l3"></div>
-  </div>
-</div>
+    <script>
+        const quote = "In your smile, I see something more beautiful than the stars...";
+        let i = 0;
 
-<script src="script.js"></script>
+        function startSurprise() {
+            // Hide welcome screen
+            document.getElementById('welcome-screen').classList.add('fade-out');
+            document.getElementById('main-content').style.display = 'block';
+
+            // Start typing animation
+            typeWriter();
+            
+            // Start tree growth after a short delay
+            setTimeout(growTree, 1000);
+        }
+
+        function typeWriter() {
+            if (i < quote.length) {
+                document.getElementById("quote-text").innerHTML += quote.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+
+        function growTree() {
+            const trunk = document.getElementById('trunk');
+            trunk.style.height = '200px';
+
+            // Create heart leaves
+            setTimeout(() => {
+                for(let j=0; j<20; j++) {
+                    setTimeout(() => {
+                        createLeaf();
+                    }, j * 200);
+                }
+                // Show final buttons after tree grows
+                setTimeout(() => {
+                    document.getElementById('final-step').style.display = 'block';
+                }, 4500);
+            }, 2000);
+        }
+
+        function createLeaf() {
+            const container = document.getElementById('tree-container');
+            const leaf = document.createElement('div');
+            leaf.className = 'heart-leaf';
+            
+            // Random positions around the top of the trunk
+            const x = Math.random() * 200 - 100 + 150;
+            const y = Math.random() * 150 + 50;
+            
+            leaf.style.left = x + 'px';
+            leaf.style.top = y + 'px';
+            leaf.style.opacity = '1';
+            
+            container.appendChild(leaf);
+        }
+
+        function moveNo() {
+            const btn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function celebrate() {
+            alert("Yay! I love you! ❤️");
+            // Yahan aap confetti library ya koi aur message daal sakte hain
+        }
+    </script>
 </body>
 </html>
