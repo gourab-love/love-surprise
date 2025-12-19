@@ -2,61 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <title>For My Queen ❤️</title>
 </head>
 <body>
 
-    <div id="welcome-screen" class="section active">
-        <div class="welcome-content">
-            <h1 class="glow-text">Hey Beautiful ❤️</h1>
-            <button id="start-btn">Open My Heart</button>
+    <section id="welcome-screen" class="section active">
+        <div style="text-align: center;">
+            <h1 style="font-size: 4rem; color: var(--pink);">Hey Gorgeous... ❤️</h1>
+            <button class="btn" id="yes-btn" onclick="startStory()">Click to Begin</button>
         </div>
-    </div>
+    </section>
 
-    <div id="tree-section" class="section">
-        <div class="quote-container">
-            <p id="typewriter-quote"></p>
+    <section id="tree-section" class="section">
+        <div class="split-container">
+            <div class="text-side">
+                <h1 id="headline"></h1>
+                <p id="quote-p" style="font-size: 1.4rem; line-height: 1.6;"></p>
+                <button class="btn" id="yes-btn" onclick="goToCards()" style="display:none; margin-top: 20px;">Scroll to Memories</button>
+            </div>
+            <div class="tree-side">
+                <div class="tree-container" id="tree-box">
+                    </div>
+            </div>
         </div>
-        <div class="tree-canvas">
-            <div id="trunk"></div>
-            <div id="leaves-container"></div>
-        </div>
-        <div id="bubbles-container"></div>
-    </div>
+    </section>
 
-    <div id="memory-section" class="section">
-        <h2 class="title">Our Digital Memories</h2>
-        <div class="polaroid-container">
-            <div class="polaroid">
-                <div class="polaroid-text">The first time we talked...</div>
-            </div>
-            <div class="polaroid">
-                <div class="polaroid-text">That late night conversation...</div>
-            </div>
-            <div class="polaroid">
-                <div class="polaroid-text">Every moment with you is magic...</div>
-            </div>
-        </div>
-        <button id="final-trigger">Wait, there's more!</button>
-    </div>
+    <section id="cards-section" class="section">
+        <h2 style="font-size: 2.5rem; color: var(--dark-pink);">10 Reasons Why You're Special</h2>
+        <div class="cards-grid" id="cards-grid"></div>
+        <button class="btn" onclick="goToFinal()" style="margin-top: 40px; background: var(--dark-pink); color: white;">I have a question...</button>
+    </section>
 
-    <div id="final-section" class="section">
-        <div class="envelope" id="envelope">✉️</div>
-        <div id="letter-content" class="hidden">
-            <p>You mean the world to me. Thank you for being you!</p>
-        </div>
-        
-        <div class="gift-box" id="gift">🎁</div>
-        <div id="proposal" class="hidden">
-            <h3>Coffee date this weekend?</h3>
-            <div class="btn-group">
-                <button id="yes-btn">Yes, I'd love to!</button>
-                <button id="no-btn">No</button>
+    <section id="final-section" class="section">
+        <div class="final-box">
+            <div id="envelope" style="font-size: 5rem; cursor: pointer;">✉️</div>
+            <div id="proposal-content" style="display: none;">
+                <h2 style="font-size: 2.5rem;">Will you be mine forever?</h2>
+                <p>Every day with you is a blessing. Let's make more memories together.</p>
+                <div class="btn-group">
+                    <button class="btn" id="yes-btn" onclick="celebrate()">YES!</button>
+                    <button class="btn" id="no-btn" onmouseover="moveNo()">No</button>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
